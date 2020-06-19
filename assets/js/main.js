@@ -8,8 +8,9 @@ const downloadBtn = document.getElementById("download-btn");
 const uploadFile = document.getElementById("upload-file");
 const revertBtn = document.getElementById("revert-btn");
 
-// Filter & Effect Handlers
+// Menambah Event Jika Mouse Klik
 document.addEventListener("click", e => {
+    //e.target.classList.contains artinya jika user klik button dengan class , contoh filter-btn maka ... akan melakukan perintah didalmnya
     if (e.target.classList.contains("filter-btn")) {
         if (e.target.classList.contains("brightness-add")) {
             Caman("#canvas", img, function() {
@@ -79,7 +80,7 @@ document.addEventListener("click", e => {
     }
 });
 
-// Revert Filters
+// Jika revert button di klik / jika Buton Remove Filter
 revertBtn.addEventListener("click", e => {
     Caman("#canvas", img, function() {
         this.revert();
@@ -93,7 +94,7 @@ uploadFile.addEventListener("change", () => {
     // Init FileReader API
     const reader = new FileReader();
 
-    // Check for file
+    // Check for file ada atau engga
     if (file) {
         // Set file name
         fileName = file.name;
@@ -121,7 +122,7 @@ uploadFile.addEventListener("change", () => {
     );
 });
 
-// Download Event
+// Download Event / jika button download di klik
 downloadBtn.addEventListener("click", () => {
     // Get ext
     const fileExtension = fileName.slice(-4);
@@ -132,10 +133,10 @@ downloadBtn.addEventListener("click", () => {
     // Check image type
     if (fileExtension === ".jpg" || fileExtension === ".png") {
         // new filename
-        newFilename = fileName.substring(0, fileName.length - 4) + "-edited.jpg";
+        newFilename = fileName.substring(0, fileName.length - 4) + "-edited.jpg"; // menambahkan nama -edited
     }
 
-    // Call download
+    // Call download / memanggil funsi download dibawah dengan param meter canvas (image yang telah di edit) dan nama file
     download(canvas, newFilename);
 });
 
