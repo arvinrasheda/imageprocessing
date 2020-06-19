@@ -1,6 +1,5 @@
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
-
 let img = new Image();
 let fileName = "";
 
@@ -49,8 +48,20 @@ document.addEventListener("click", e => {
                 this.vintage().render();
             });
         } else if (e.target.classList.contains("lomo-add")) {
+            //new library
+            // P = new Pixastic(ctx);
+            // P["solarize"]().done(function() {
+            //     canvas.style.display = "block";
+            // });
             Caman("#canvas", img, function() {
                 this.lomo().render();
+            //     // this.invert().render(); dipertajam
+            //     // this.sepia(50).render();
+            //     // Arguments: (R, G, B, strength)
+            //     this.colorize(25, 180, 200, 20);
+            //
+            //     // The other way is to specify a color in hex form:
+            //     this.colorize("#4090D5", 20);
             });
         } else if (e.target.classList.contains("clarity-add")) {
             Caman("#canvas", img, function() {
@@ -85,6 +96,8 @@ revertBtn.addEventListener("click", e => {
     Caman("#canvas", img, function() {
         this.revert();
     });
+    P = new Pixastic(img);
+    P.done();
 });
 
 // Upload File
