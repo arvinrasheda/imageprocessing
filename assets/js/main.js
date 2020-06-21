@@ -48,20 +48,24 @@ document.addEventListener("click", e => {
                 this.vintage().render();
             });
         } else if (e.target.classList.contains("lomo-add")) {
-            //new library
+            // new library
             // P = new Pixastic(ctx);
-            // P["solarize"]().done(function() {
+            // P["noise"]({
+            //     amount : 0.5,
+            //     strength : 0.5,
+            //     mono : true
+            // }).done(function() {
             //     canvas.style.display = "block";
             // });
             Caman("#canvas", img, function() {
                 this.lomo().render();
-            //     // this.invert().render(); dipertajam
-            //     // this.sepia(50).render();
-            //     // Arguments: (R, G, B, strength)
-            //     this.colorize(25, 180, 200, 20);
-            //
-            //     // The other way is to specify a color in hex form:
-            //     this.colorize("#4090D5", 20);
+            // //     // this.invert().render(); dipertajam
+            // //     // this.sepia(50).render();
+            // //     // Arguments: (R, G, B, strength)
+            // //     this.colorize(25, 180, 200, 20);
+            // //
+            // //     // The other way is to specify a color in hex form:
+            // //     this.colorize("#4090D5", 20);
             });
         } else if (e.target.classList.contains("clarity-add")) {
             Caman("#canvas", img, function() {
@@ -93,64 +97,89 @@ document.addEventListener("click", e => {
 
 // Jika revert button di klik / jika Buton Remove Filter
 revertBtn.addEventListener("click", e => {
-    Caman("#canvas", img, function() {
-        this.revert();
-    });
-    P = new Pixastic(img);
-    P.done();
+    let P;
+    if (fileName !== "") {
+        Caman("#canvas", img, function () {
+            this.revert();
+        });
+        P = new Pixastic(img);
+        P.done();
+    } else {
+        alert("Upload Image First !");
+    }
 });
 
 // Upload File
 uploadFile.addEventListener("change", () => {
-    // Get File
+
     const file = document.getElementById("upload-file").files[0];
     // Init FileReader API
     const reader = new FileReader();
 
-    // Check for file ada atau engga
-    if (file) {
-        // Set file name
-        fileName = file.name;
-        // Read data as URL
-        reader.readAsDataURL(file);
-    }
+    // Allowing file type
+    var allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
 
-    // Add image to canvas
-    reader.addEventListener(
-        "load",
-        () => {
-            // Create image
-            img = new Image();
-            // Set image src
-            img.src = reader.result;
-            // On image load add to canvas
-            img.onload = function() {
-                canvas.width = img.width;
-                canvas.height = img.height;
-                ctx.drawImage(img, 0, 0, img.width, img.height);
-                canvas.removeAttribute("data-caman-id");
-            };
-        },
-        false
-    );
+    // untuk cek file type
+    if (!allowedExtensions.exec(file.name)) {
+        alert('Allowed File Only jpg , jpeg, png !');
+    } else {
+        if (file.size > 0) {
+            // cek ukuran gambar
+            const size = (file.size / 1024 / 1024).toFixed(2);
+
+            if (size > 2) {
+                alert("File too Big, please select a file less than 2mb");
+            } else {
+                if (file) {
+                    // Set file name
+                    fileName = file.name;
+                    // Read data as URL
+                    reader.readAsDataURL(file);
+                }
+
+                // Add image to canvas
+                reader.addEventListener(
+                    "load",
+                    () => {
+                        // Create image
+                        img = new Image();
+                        // Set image src
+                        img.src = reader.result;
+                        // On image load add to canvas / setelah upload langsung load gambar di canvas
+                        img.onload = function() {
+                            canvas.width = img.width;
+                            canvas.height = img.height;
+                            ctx.drawImage(img, 0, 0, img.width, img.height);
+                            canvas.removeAttribute("data-caman-id");
+                        };
+                    },
+                    false
+                );
+            }
+        }
+    }
 });
 
 // Download Event / jika button download di klik
 downloadBtn.addEventListener("click", () => {
-    // Get ext
-    const fileExtension = fileName.slice(-4);
+    if (fileName !== "") {
+        // Get ext
+        const fileExtension = fileName.slice(-4);
 
-    // Init new filename
-    let newFilename;
+        // Init new filename
+        let newFilename;
 
-    // Check image type
-    if (fileExtension === ".jpg" || fileExtension === ".png") {
-        // new filename
-        newFilename = fileName.substring(0, fileName.length - 4) + "-edited.jpg"; // menambahkan nama -edited
+        // Check image type
+        if (fileExtension === ".jpg" || fileExtension === ".png") {
+            // new filename
+            newFilename = fileName.substring(0, fileName.length - 4) + "-edited.jpg"; // menambahkan nama -edited
+        }
+
+        // Call download / memanggil funsi download dibawah dengan param meter canvas (image yang telah di edit) dan nama file
+        download(canvas, newFilename);
+    } else {
+        alert("Upload Image First !");
     }
-
-    // Call download / memanggil funsi download dibawah dengan param meter canvas (image yang telah di edit) dan nama file
-    download(canvas, newFilename);
 });
 
 // Download
