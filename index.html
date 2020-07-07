@@ -34,11 +34,16 @@
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item active">Home</li>
                 </ol>
+
+                <div class="alert alert-dismissible alert-info">
+                    <strong><a href="#" data-toggle="modal" data-target="#exampleModal"> Baca Panduan Disini !</a></strong>
+                </div>
+
                 <div class="alert alert-dismissible alert-success">
-                    <strong>Selamat Datang!</strong> Silahkan Upload Gambar Terlebih Dahulu!</a>.
+                    <strong>Selamat Datang!</strong> Silahkan Upload Gambar Terlebih Dahulu!
                 </div>
                 <div class="alert alert-dismissible alert-warning">
-                    <strong>Ukuran Maksimal 2 MB!</strong></a>.
+                    <strong>Ukuran Maksimal 2 MB!</strong>
                 </div>
                 <div class="custom-file mb-3">
                     <input type="file" class="custom-file-input" id="upload-file">
@@ -88,7 +93,7 @@
                 <div class="row mb-3">
                     <div class="col-md-3">
                         <button class="filter-btn vintage-add btn btn-dark btn-block">
-                            Vintage
+                            Sepia
                         </button>
                     </div>
                     <div class="col-md-3">
@@ -142,6 +147,33 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Panduan Penggunaan</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h4 class="card-title">Upload & Download Gambar</h4>
+                <p class="card-text">1. Pilih Gambar melalui field "choose image".</p>
+                <p class="card-text">2. Pilih Gambar dengan ukuran maksimal 2MB / 2048 KB </p>
+                <p class="card-text">3. Tentukan filter Sesuai keinginan </p>
+                <p class="card-text">4. Bila sudah sesuai silahkan klik tombol download </p>
+                <p class="card-text">5. Tentukan folder untuk menyimpan gambar </p>
+                <p class="card-text">6. Selesai </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
     <script src="assets/js/pixastic.js"></script>
     <script src="assets/js/pixastic.effects.js"></script>
     <script src="assets/js/pixastic.worker.js"></script>
