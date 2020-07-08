@@ -48,17 +48,16 @@ document.addEventListener("click", e => {
                 this.vintage().render();
             });
         } else if (e.target.classList.contains("lomo-add")) {
-            // new library
-            // P = new Pixastic(ctx);
-            // P["noise"]({
-            //     amount : 0.5,
-            //     strength : 0.5,
-            //     mono : true
-            // }).done(function() {
-            //     canvas.style.display = "block";
-            // });
-            Caman("#canvas", img, function() {
-                this.lomo().render();
+            P = new Pixastic(ctx);
+            P["noise"]({
+                amount : 0.5,
+                strength : 0.5,
+                mono : true
+            }).done(function() {
+                canvas.style.display = "block";
+            });
+            // Caman("#canvas", img, function() {
+            //     this.lomo().render();
             // //     // this.invert().render(); dipertajam
             // //     // this.sepia(50).render();
             // //     // Arguments: (R, G, B, strength)
@@ -66,14 +65,16 @@ document.addEventListener("click", e => {
             // //
             // //     // The other way is to specify a color in hex form:
             // //     this.colorize("#4090D5", 20);
-            });
+            // });
         } else if (e.target.classList.contains("clarity-add")) {
-            Caman("#canvas", img, function() {
-                this.clarity().render();
+            P = new Pixastic(ctx);
+            P["desaturate"]().done(function() {
+                canvas.style.display = "block";
             });
         } else if (e.target.classList.contains("sincity-add")) {
-            Caman("#canvas", img, function() {
-                this.sinCity().render();
+            P = new Pixastic(ctx);
+            P["mosaic"]({blockSize : 8}).done(function() {
+                canvas.style.display = "block";
             });
         } else if (e.target.classList.contains("crossprocess-add")) {
             Caman("#canvas", img, function() {
@@ -97,7 +98,6 @@ document.addEventListener("click", e => {
 
 // Jika revert button di klik / jika Buton Remove Filter
 revertBtn.addEventListener("click", e => {
-    let P;
     if (fileName !== "") {
         Caman("#canvas", img, function () {
             this.revert();
@@ -142,7 +142,7 @@ uploadFile.addEventListener("change", () => {
                     "load",
                     () => {
                         // Create image
-                        img = new Image();
+                        // img = new Image();
                         // Set image src
                         img.src = reader.result;
                         // On image load add to canvas / setelah upload langsung load gambar di canvas
