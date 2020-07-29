@@ -27,58 +27,33 @@ document.addEventListener("click", e => {
             Caman("#canvas", img, function() {
                 this.contrast(-5).render();
             });
-        } else if (e.target.classList.contains("saturation-add")) {
+        } else if (e.target.classList.contains("brightness-add")) {
             Caman("#canvas", img, function() {
-                this.saturation(5).render();
+                this.brightness(5).render();
             });
-        } else if (e.target.classList.contains("saturation-remove")) {
+        } else if (e.target.classList.contains("brightness-remove")) {
             Caman("#canvas", img, function() {
-                this.saturation(-5).render();
-            });
-        } else if (e.target.classList.contains("vibrance-add")) {
-            Caman("#canvas", img, function() {
-                this.vibrance(5).render();
-            });
-        } else if (e.target.classList.contains("vibrance-remove")) {
-            Caman("#canvas", img, function() {
-                this.vibrance(-5).render();
+                this.brightness(-5).render();
             });
         } else if (e.target.classList.contains("vintage-add")) {
             Caman("#canvas", img, function() {
                 this.vintage().render();
             });
-        } else if (e.target.classList.contains("lomo-add")) {
-            P = new Pixastic(ctx);
-            P["noise"]({
-                amount : 0.5,
-                strength : 0.5,
-                mono : true
-            }).done(function() {
-                canvas.style.display = "block";
+        } else if (e.target.classList.contains("noise-add")) {
+            Caman("#canvas", img, function () {
+                this.noise(15).render();
             });
-            // Caman("#canvas", img, function() {
-            //     this.lomo().render();
-            // //     // this.invert().render(); dipertajam
-            // //     // this.sepia(50).render();
-            // //     // Arguments: (R, G, B, strength)
-            // //     this.colorize(25, 180, 200, 20);
-            // //
-            // //     // The other way is to specify a color in hex form:
-            // //     this.colorize("#4090D5", 20);
-            // });
-        } else if (e.target.classList.contains("clarity-add")) {
-            P = new Pixastic(ctx);
-            P["desaturate"]().done(function() {
-                canvas.style.display = "block";
+        } else if (e.target.classList.contains("hue-add")) {
+            Caman("#canvas", img, function () {
+                this.hue(90).render();
             });
-        } else if (e.target.classList.contains("sincity-add")) {
-            P = new Pixastic(ctx);
-            P["mosaic"]({blockSize : 8}).done(function() {
-                canvas.style.display = "block";
+        } else if (e.target.classList.contains("darken-add")) {
+            Caman("#canvas", img, function () {
+                this.gamma(1.4).render();
             });
-        } else if (e.target.classList.contains("crossprocess-add")) {
+        } else if (e.target.classList.contains("clip-add")) {
             Caman("#canvas", img, function() {
-                this.crossProcess().render();
+                this.clip(20).render();
             });
         } else if (e.target.classList.contains("pinhole-add")) {
             Caman("#canvas", img, function() {
@@ -88,9 +63,9 @@ document.addEventListener("click", e => {
             Caman("#canvas", img, function() {
                 this.nostalgia().render();
             });
-        } else if (e.target.classList.contains("hermajesty-add")) {
+        } else if (e.target.classList.contains("invert-add")) {
             Caman("#canvas", img, function() {
-                this.herMajesty().render();
+                this.invert().render();
             });
         }
     }
@@ -102,8 +77,6 @@ revertBtn.addEventListener("click", e => {
         Caman("#canvas", img, function () {
             this.revert();
         });
-        P = new Pixastic(img);
-        P.done();
     } else {
         alert("Upload Image First !");
     }
@@ -142,7 +115,7 @@ uploadFile.addEventListener("change", () => {
                     "load",
                     () => {
                         // Create image
-                        // img = new Image();
+                        img = new Image();
                         // Set image src
                         img.src = reader.result;
                         // On image load add to canvas / setelah upload langsung load gambar di canvas

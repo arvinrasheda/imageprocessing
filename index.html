@@ -54,15 +54,8 @@
                 <h4 class="text-center my-3">Add Filters</h4>
 
                 <div class="row mb-3 text-center">
-<!--                    <div class="col-md-3 col-sm-3">-->
-<!--                        <div class="btn-group btn-group-sm">-->
-<!--                            <button class="filter-btn brightness-remove btn btn-info">-</button>-->
-<!--                            <button class="btn btn-secondary btn-disabled" disabled>Brightness</button>-->
-<!--                            <button class="filter-btn brightness-add btn btn-info">+</button>-->
-<!--                        </div>-->
-<!--                    </div>-->
 
-                    <div class="col-md-4 col-sm-4">
+                    <div class="col-md-6 col-sm-6">
                         <div class="btn-group btn-group-sm">
                             <button class="filter-btn contrast-remove btn btn-info">-</button>
                             <button class="btn btn-secondary btn-disabled" disabled>Contrast</button>
@@ -70,21 +63,14 @@
                         </div>
                     </div>
 
-                    <div class="col-md-4 col-sm-4">
+                    <div class="col-md-6 col-sm-6">
                         <div class="btn-group btn-group-sm">
-                            <button class="filter-btn saturation-remove btn btn-info">-</button>
-                            <button class="btn btn-secondary btn-disabled" disabled>Saturation</button>
-                            <button class="filter-btn saturation-add btn btn-info">+</button>
+                            <button class="filter-btn brightness-remove btn btn-info">-</button>
+                            <button class="btn btn-secondary btn-disabled" disabled>Brightness</button>
+                            <button class="filter-btn brightness-add btn btn-info">+</button>
                         </div>
                     </div>
 
-                    <div class="col-md-4 col-sm-4">
-                        <div class="btn-group btn-group-sm">
-                            <button class="filter-btn vibrance-remove btn btn-info">-</button>
-                            <button class="btn btn-secondary btn-disabled" disabled>Vibrance</button>
-                            <button class="filter-btn vibrance-add btn btn-info">+</button>
-                        </div>
-                    </div>
                 </div>
                 <!-- ./row -->
 
@@ -97,26 +83,26 @@
                         </button>
                     </div>
                     <div class="col-md-3">
-                        <button class="filter-btn lomo-add btn btn-dark btn-block">
+                        <button class="filter-btn noise-add btn btn-dark btn-block">
                             Noise
                         </button>
                     </div>
                     <div class="col-md-3">
-                        <button class="filter-btn clarity-add btn btn-dark btn-block">
-                            Remove Noise
+                        <button class="filter-btn hue-add btn btn-dark btn-block">
+                            Hue Colorize
                         </button>
                     </div>
                     <div class="col-md-3">
-                        <button class="filter-btn sincity-add btn btn-dark btn-block">
-                            Mosaic
+                        <button class="filter-btn darken-add btn btn-dark btn-block">
+                            Darken
                         </button>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-md-3">
-                        <button class="filter-btn crossprocess-add btn btn-dark btn-block">
-                            Cross Process
+                        <button class="filter-btn clip-add btn btn-dark btn-block">
+                            Clip
                         </button>
                     </div>
                     <div class="col-md-3">
@@ -130,8 +116,8 @@
                         </button>
                     </div>
                     <div class="col-md-3">
-                        <button class="filter-btn hermajesty-add btn btn-dark btn-block">
-                            Her Majesty
+                        <button class="filter-btn invert-add btn btn-dark btn-block">
+                            Invert
                         </button>
                     </div>
                 </div>
@@ -159,13 +145,37 @@
                 </button>
             </div>
             <div class="modal-body">
-                <h4 class="card-title">Upload & Download Gambar</h4>
-                <p class="card-text">1. Pilih Gambar melalui field "choose image".</p>
-                <p class="card-text">2. Pilih Gambar dengan ukuran maksimal 2MB / 2048 KB </p>
-                <p class="card-text">3. Tentukan filter Sesuai keinginan </p>
-                <p class="card-text">4. Bila sudah sesuai silahkan klik tombol download </p>
-                <p class="card-text">5. Tentukan folder untuk menyimpan gambar </p>
-                <p class="card-text">6. Selesai </p>
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#panduan">Panduan</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#glorasium">Glorasium</a>
+                    </li>
+                </ul>
+                <div id="myTabContent" class="tab-content">
+                    <div class="tab-pane fade" id="panduan">
+                        <h4 class="card-title">Upload & Download Gambar</h4>
+                        <p class="card-text">1. Pilih Gambar melalui field "choose image".</p>
+                        <p class="card-text">2. Pilih Gambar dengan ukuran maksimal 2MB / 2048 KB </p>
+                        <p class="card-text">3. Tentukan filter Sesuai keinginan </p>
+                        <p class="card-text">4. Bila sudah sesuai silahkan klik tombol download </p>
+                        <p class="card-text">5. Tentukan folder untuk menyimpan gambar </p>
+                        <p class="card-text">6. Selesai </p>
+                    </div>
+                    <div class="tab-pane fade active show" id="glorasium">
+                        <p class="card-text">1. Contras = untuk menambah dan mengurangi kontras pada gambar.</p>
+                        <p class="card-text">2. Brightness = untuk menambah dan mengurangi tingkat kecerahan pada gambar.</p>
+                        <p class="card-text">3. Sepia = Menerapkan efek sepia yang dapat disesuaikan ke gambar.</p>
+                        <p class="card-text">4. Noise = Menerapkan efek titik titik ke gambar.</p>
+                        <p class="card-text">5. Hue Colorize = Menyesuaikan rona gambar. Ini dapat digunakan untuk menggeser warna dalam gambar dengan cara yang seragam.</p>
+                        <p class="card-text">6. Darken = Menerapkan efek pencahayaan yang kurang pada gambar.</p>
+                        <p class="card-text">7. Clip = Menerapkan warna berbeda agar nampak jelas pada gambar.</p>
+                        <p class="card-text">8. Pinhole = Menerapkan warna gelap melingkar pada gambar.</p>
+                        <p class="card-text">9. Nostalgia = Memberikan efek jadul pada gambar.</p>
+                        <p class="card-text">10. Invert = Menghidupkan semua warna dalam gambar dengan mengurangi setiap saluran warna.</p>
+                    </div>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
